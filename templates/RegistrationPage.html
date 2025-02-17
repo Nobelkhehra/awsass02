@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -15,24 +15,30 @@
             margin: 0;
             color: white;
         }
-        .login-container {
+        .register-container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             text-align: center;
-            max-width: 350px;
+            max-width: 400px;
             width: 100%;
         }
         h1 {
             margin-bottom: 1rem;
             font-size: 1.8rem;
         }
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-weight: bold;
+        }
         input {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
+            margin: 5px 0;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -42,6 +48,10 @@
         }
         input::placeholder {
             color: #ddd;
+        }
+        input[type="file"] {
+            background: transparent;
+            border: none;
         }
         button {
             width: 100%;
@@ -53,6 +63,7 @@
             font-size: 1rem;
             cursor: pointer;
             transition: background 0.3s;
+            margin-top: 10px;
         }
         button:hover {
             background: #e76f42;
@@ -71,15 +82,25 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h1>Sign In</h1>
-        <form action="{{url_for('login')}}" method="POST">
+    <div class="register-container">
+        <h1>Register</h1>
+        <form action="{{url_for('registration')}}" method="POST" enctype="multipart/form-data">
             <div>{{ message }}</div>
+            <label for="username">Username:</label>
             <input id="username" name="username" type="text" placeholder="Username" autocomplete="off" required />
+            <label for="password">Password:</label>
             <input id="password" name="password" type="password" placeholder="Password" autocomplete="off" required />
-            <button id="submit" name="submit">Login</button>
+            <label for="firstname">First Name:</label>
+            <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off" required />
+            <label for="lastname">Last Name:</label>
+            <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off" required />
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="email" placeholder="Email" autocomplete="off" required />
+            <label for="textfile">Upload File:</label>
+            <input type="file" id="textfile" name="textfile" required />
+            <button type="submit">Register</button>
         </form>
-        <p>Don't have an account? <a href="{{url_for('registration')}}">Sign up</a></p>
+        <p>Already have an account? <a href="{{url_for('login')}}">Login here</a></p>
     </div>
 </body>
 </html>
